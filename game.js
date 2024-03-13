@@ -15,7 +15,7 @@ $(document).on("keydown", function () {
 });
 
 $(".btn").on("click", function () {
-  let userChosenColour = this.attr("id");
+  let userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 
   playSound(userChosenColour);
@@ -28,6 +28,7 @@ $(".btn").on("click", function () {
 });
 
 function nextSequence() {
+  userClickedPattern = [];
   // update level
   level += 1;
   $("#level-title").text("Level " + level);
@@ -86,5 +87,12 @@ function checkAnswer(currentLevel) {
 
     // restart
     $("#level-title").text("Game Over, Press Any Key to Restart");
+    startOver();
   }
+}
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  started = false;
 }
